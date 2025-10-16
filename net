@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的網頁設計作業 - 單檔整合版</title>
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+    
+    <style>
+        /* 2. 基本樣式 */
+        body {
+            font-family: '微軟正黑體', 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* 深灰色背景，提供黑色質感 */
+            color: #ccc; /* 淺灰色文字，與深色背景對比 */
+            scroll-behavior: smooth; /* 錨點連結平順滑動 */
+        }
+
+        /* **** 黑色框架設計：上半部框架 **** */
+        header {
+            background: #000000; /* 純黑色背景 */
+            color: #ffffff;      /* 白色文字 */
+            padding: 1.5em 0;
+            text-align: center;
+            position: sticky; /* 懸浮在頂部 */
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 黑色陰影增加質感 */
+        }
+
+        header h1 {
+            margin-bottom: 0.5em;
+            font-size: 1.8em;
+            text-shadow: 1px 1px 2px #333;
+        }
+
+        header nav a {
+            color: #00bcd4; /* 導航連結使用科技藍，增加質感 */
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #ffffff;
+        }
+
+        /* 中間區塊：內容排版 */
+        .content-section {
+            padding: 30px 20px;
+            margin: 30px auto;
+            max-width: 1000px;
+            background: #282828; /* 比背景稍淺的深色卡片 */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            border-left: 5px solid #00bcd4; /* 增加科技感藍線 */
+        }
+        
+        /* 標題樣式 */
+        h2 {
+            color: #00bcd4;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #fff;
+        }
+        p {
+            color: #ccc;
+        }
+
+        /* 人員介紹/文字區塊樣式 */
+        #about .intro-box {
+            border: 1px solid #444;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 6px;
+        }
+
+        /* 3. 影片容器樣式 (確保響應式 16:9 比例) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin: 20px auto;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none; /* 移除邊框 */
+        }
+
+        /* 圖片與多媒體 */
+        .photo-container img {
+            max-width: 300px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #00bcd4;
+            border-radius: 5px;
+        }
+
+        /* 4. 圖表容器樣式 */
+        .chart-container {
+            margin: 20px auto; 
+            max-width: 100%; 
+            text-align: center;
+        }
+        
+        /* Plotly 容器尺寸 */
+        #myPlot {
+            width: 100% !important;
+            height: 400px !important; 
+        }
+
+        /* 連結區塊 */
+        #links ul {
+            list-style: none;
+            padding: 0;
+        }
+        #links ul li a {
+            color: #ffd700; /* 金色連結 */
+            text-decoration: none;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px dashed #444;
+        }
+        #links ul li a:hover {
+            color: #fff;
+        }
+
+        /* 頁腳 */
+        footer {
+            background: #000000;
+            color: #777;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+        footer a {
+            color: #00bcd4;
+        }
+
+
+        /* 5. 響應式網頁設計 (Responsive Design) */
+        @media (max-width: 768px) {
+            header nav {
+                padding-top: 10px;
+            }
+            header nav a {
+                display: block; 
+                padding: 5px 0;
+                margin: 0 5px;
+            }
+            header h1 {
+                font-size: 1.5em;
+            }
+            .content-section {
+                margin: 15px 5px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>網際網路作業網站</h1>
+        <nav>
+            <a href="#about">人員介紹</a> | 
+            <a href="#media">多媒體展示</a> | 
+            <a href="#data">數據分析</a> | 
+            <a href="#links">同學網站</a>
+        </nav>
+    </header>
+    
+    <section id="about" class="content-section">
+        <h2>人員介紹 / 關於我</h2>
+        <div class="intro-box">
+            <h3>我是阿諺</h3>
+            <p><strong>這是一個網際網路應用的作業 臨時架起來的網站</strong></p>
+            <p>本網站用於展示網頁設計基本技能，包括單頁架構、響應式設計、多媒體嵌入以及數據視覺化 (Plotly.js) 的應用。</p>
+            <p>感謝您的審閱。</p>
+        </div>
+    </section>
+
+  
+
+    <section id="media" class="content-section">
+        <h2>我最喜歡的東東</h2>
+        
+        <h3>最愛影片</h3>
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/s-yTRjfF1d8" 
+                title="ㄨㄟㄨㄟㄨㄟ feat.計畫通行" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <h3>最愛貓貓 GIF</h3>
+        <div class="photo-container">
+            <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3hoM3RoYTl1d3d4bWh2YWd1Ym8yejlpajgwcXl2b2h5a3F1dWZhZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1OrIIOIcRTDaNidc5p/giphy.gif" alt="有趣動圖">
+        </div>
+    </section>
+
+    <section id="data" class="content-section">
+        <h2>統計圖表 (Plotly.js)</h2>
+        <div class="chart-container">
+            <div id="myPlot" style="width:100%; max-width:700px; height:400px;"></div>
+        </div>
+    </section>
+
+    <section id="links" class="content-section">
+        <h2>作業項目 7：超連結班上三位同學的網站</h2>
+        <ul>
+            <li><a href="https://studentA.com" target="_blank">同學 A 的網站 (張小華)</a></li>
+            <li><a href="https://studentB.net" target="_blank">同學 B 的網站 (李大明)</a></li>
+            <li><a href="https://studentC.org" target="_blank">同學 C 的網站 (陳美麗)</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>
+            &copy; 2025 我的作業網站 | 
+            作業項目 6：本網站已上架至 <a href="https://YOUR_GITHUB_PAGES_URL" target="_blank">我的 GitHub Pages / 網站空間</a>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 數據：動物平均壽命比較
+            const xArray = ["狗狗", "貓貓", "鸚鵡", "烏龜", "土撥鼠"];
+            // 數據：動物的平均壽命 (年)
+            const yArray = [12, 14, 20, 30, 7]; 
+
+            // 圖表數據
+            const data = [{
+                x: xArray,
+                y: yArray,
+                type: "bar",           
+                orientation: "v",      
+                marker: {
+                    color: 'rgba(0, 188, 212, 0.9)' // 使用 CSS 中科技藍色調
+                } 
+            }];
+
+            // 圖表佈局
+            const layout = {
+                title: {
+                    text: "寵物平均壽命比較 (年)",
+                    font: {
+                        color: '#fff' // 讓標題顏色與黑色主題一致
+                    }
+                },
+                paper_bgcolor: '#282828', // 圖表背景色
+                plot_bgcolor: '#333',     // 繪圖區背景色
+                responsive: true,
+                xaxis: {
+                    title: "寵物類別",
+                    automargin: true,
+                    tickfont: { color: '#ccc' },
+                    titlefont: { color: '#00bcd4' },
+                    gridcolor: '#444'
+                },
+                yaxis: {
+                    title: "平均壽命 (年)",
+                    rangemode: 'tozero',
+                    tickfont: { color: '#ccc' },
+                    titlefont: { color: '#00bcd4' },
+                    gridcolor: '#444'
+                }
+            };
+
+            // 呼叫 Plotly 函式，繪製到 HTML 中 ID 為 "myPlot" 的元素上
+            Plotly.newPlot("myPlot", data, layout);
+            
+        });
+    </script>
+</body>
+</html>
