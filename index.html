@@ -8,8 +8,26 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
     
     <style>
-        /* 2. 基本樣式 */
-        body {
+	
+	#background-gifs {
+    position: fixed; /* 固定在視窗中，不會隨內容滾動 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* 確保它在最底層，不會遮擋文字和內容 */
+    opacity: 0.8; /* 降低透明度，讓內容更突出 (可選) */
+    
+    /* 使用您的 GIF 圖，讓它重複排列 */
+    background-image: url('https://newscrewdriver.com/wp-content/uploads/2018/10/poptartcat320240.gif');
+    background-repeat: repeat; /* 關鍵：讓 GIF 圖案重複平鋪 */
+    background-size: auto; /* 保持 GIF 原始大小 */
+    
+    /* 讓 GIF 隨著視差滾動而動 */
+    background-attachment: fixed; 
+}
+		
+		
             font-family: '微軟正黑體', 'Arial', sans-serif;
             line-height: 1.6;
             margin: 0;
@@ -21,14 +39,15 @@
 
         /* **** 黑色框架設計：上半部框架 **** */
         header {
-            background: #000000; /* 純黑色背景 */
-            color: #ffffff;      /* 白色文字 */
-            padding: 1.5em 0;
-            text-align: center;
-            position: sticky; /* 懸浮在頂部 */
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* 黑色陰影增加質感 */
+/* 修正：將純黑改為幾乎不透明的黑色背景，讓導航列文字清晰 */
+    background: rgba(0, 0, 0, 0.98); 
+    color: #ffffff;      /* 白色文字 */
+    padding: 1.5em 0;
+    text-align: center;
+    position: sticky; 
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
         header h1 {
@@ -50,14 +69,15 @@
         }
 
         /* 中間區塊：內容排版 */
-        .content-section {
-            padding: 30px 20px;
-            margin: 30px auto;
-            max-width: 1000px;
-            background: #282828; /* 比背景稍淺的深色卡片 */
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-            border-left: 5px solid #00bcd4; /* 增加科技感藍線 */
+.content-section {
+    padding: 30px 20px;
+    margin: 30px auto;
+    max-width: 1000px;
+    /* 建議使用這個，讓內容方框非常清晰，不會被 GIF 影響 */
+    background: rgba(10, 10, 10, 0.95); 
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-left: 5px solid #00bcd4;
         }
         
         /* 標題樣式 */
@@ -173,7 +193,7 @@
     </style>
 </head>
 <body>
-
+<div id="background-gifs"></div>
     <header>
         <h1>網際網路作業網站</h1>
         <nav>
@@ -291,7 +311,6 @@
     </script>
 </body>
 </html>
-
 
 
 
